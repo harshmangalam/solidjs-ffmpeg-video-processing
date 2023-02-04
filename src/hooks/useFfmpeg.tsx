@@ -10,7 +10,7 @@ export default function useFfmpeg() {
     progress: (e) => console.log(e.ratio),
   });
 
-  const transcode = async (file: File) => {
+  const trim = async (file: File) => {
     const { name } = file;
     await ffmpeg.load();
     ffmpeg.FS("writeFile", name, await fetchFile(file));
@@ -33,7 +33,7 @@ export default function useFfmpeg() {
     const files = (e.target as HTMLInputElement).files;
 
     if (files?.length) {
-      transcode(files[0]);
+      trim(files[0]);
     }
   };
   return {
